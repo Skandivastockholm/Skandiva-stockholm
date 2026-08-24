@@ -1,231 +1,760 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skandiva Stockholm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skandiva — Restaurering av skandinaviska designklassiker</title>
+<meta name="description" content="Skandiva restaurerar och klär om skandinaviska designklassiker med respekt för form, material och hantverk.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --paper:#f3efe7;
+  --ink:#292724;
+  --muted:#706b63;
+  --line:#d8d0c4;
+  --warm:#9a7353;
+  --white:#fffdfa;
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  background:#f4f1ea;
-  color:#222;
-  font-family:Arial,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"DM Sans",Arial,sans-serif;
 }
 
-header{
-  height:86px;
-  padding:0 6%;
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.header{
+  position:fixed;
+  z-index:20;
+  top:0;
+  left:0;
+  right:0;
+  height:76px;
+  background:rgba(243,239,231,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #d8d2c7;
-  background:#f4f1ea;
-  position:sticky;
-  top:0;
-  z-index:10;
+  padding:0 5vw;
 }
 
 .logo{
-  font-size:20px;
-  font-weight:bold;
-  letter-spacing:7px;
+  font-size:19px;
+  letter-spacing:.24em;
+  font-weight:600;
 }
 
-nav{
+.nav{
   display:flex;
-  gap:32px;
-}
-
-nav a{
-  color:#222;
-  text-decoration:none;
-  font-size:14px;
-}
-
-nav a:hover{
-  text-decoration:underline;
-}
-
-.hero{
-  min-height:78vh;
-  padding:100px 6%;
-  display:flex;
-  align-items:center;
-}
-
-.hero small,
-.section-label{
-  letter-spacing:3px;
-  font-size:12px;
+  gap:25px;
+  font-size:11px;
+  letter-spacing:.08em;
   text-transform:uppercase;
 }
 
-.hero h1{
-  font-family:Georgia,serif;
-  font-size:clamp(64px,10vw,130px);
-  line-height:.88;
-  font-weight:normal;
+.nav a:hover{opacity:.55}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.cta{
+  background:var(--ink);
+  color:white;
+  padding:13px 18px;
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  background:transparent;
+  cursor:pointer;
+  padding:10px;
+}
+
+.menu-btn span{
+  display:block;
+  height:1px;
+  background:var(--ink);
+  margin:5px 0;
+}
+
+.hero{
+  min-height:100vh;
+  padding:120px 5vw 5vw;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:5vw;
+  align-items:center;
+}
+
+.eyebrow,
+.kicker{
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--muted);
+}
+
+h1,h2,h3{
+  font-family:"DM Serif Display",Georgia,serif;
+  font-weight:400;
+}
+
+h1{
+  font-size:clamp(72px,9vw,135px);
+  line-height:.84;
   margin:25px 0;
 }
 
-.hero p{
-  max-width:650px;
-  font-size:21px;
+h1 em,h2 em{
+  font-style:italic;
+}
+
+.lead{
+  font-size:19px;
   line-height:1.6;
-  color:#68645d;
+  max-width:500px;
+  color:#514d47;
+}
+
+.actions{
+  display:flex;
+  gap:25px;
+  align-items:center;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 22px;
+  background:var(--ink);
+  color:#fff;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.textlink{
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.hero-photo{
+  height:min(76vh,760px);
+  overflow:hidden;
+  background:#c5b8a8;
+}
+
+.section{
+  padding:120px 6vw;
+}
+
+.products-intro{
+  background:var(--white);
 }
 
 .intro{
-  padding:90px 6%;
-  background:#fffdf8;
+  background:var(--white);
+  display:grid;
+  grid-template-columns:.7fr 2fr;
+  gap:8vw;
 }
 
 .intro h2,
-.products h2,
-.contact h2{
-  font-family:Georgia,serif;
-  font-size:clamp(42px,6vw,75px);
-  font-weight:normal;
-  margin:18px 0 55px;
+.section-title{
+  font-size:clamp(52px,6.2vw,88px);
+  line-height:.95;
+  margin:0;
 }
 
-.products{
-  padding:100px 6%;
+.intro p{
+  font-size:19px;
+  line-height:1.8;
+  max-width:760px;
+  color:#59554e;
 }
 
-.grid{
+.product-note{
+  max-width:700px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.75;
+  margin:25px 0 0;
+}
+
+.product-block{
+  margin-top:70px;
+}
+
+.product-block-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:28px;
+}
+
+.product-block-head h3{
+  font-size:42px;
+  margin:0;
+}
+
+.product-block-head p{
+  max-width:460px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  margin:0;
+}
+
+.product-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product-card{
+  background:#eee9e0;
+  border:1px solid #ded5c8;
+  min-height:390px;
+  display:flex;
+  flex-direction:column;
+}
+
+.product-visual{
+  height:235px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#f8f5ef,#ded6ca);
+  position:relative;
+  overflow:hidden;
+}
+
+.product-visual:before{
+  content:"";
+  width:170px;
+  height:120px;
+  border:1px solid rgba(41,39,36,.18);
+  border-radius:55% 45% 42% 58%;
+  transform:rotate(-9deg);
+  position:absolute;
+}
+
+.product-visual .brand{
+  font-size:12px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  position:relative;
+  z-index:1;
+  color:#4b463f;
+}
+
+.product-visual .model{
+  font-family:"DM Serif Display",Georgia,serif;
+  font-size:29px;
+  position:relative;
+  z-index:1;
+  margin-top:42px;
+}
+
+.product-body{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.product-body .tag{
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.product-body h4{
+  font-family:"DM Serif Display",Georgia,serif;
+  font-size:28px;
+  font-weight:400;
+  margin:9px 0 7px;
+}
+
+.product-body p{
+  font-size:12px;
+  line-height:1.6;
+  color:var(--muted);
+  margin:0 0 16px;
+}
+
+.product-footer{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.price{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.product-link{
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:4px;
+}
+
+.brand-strip{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:70px;
+}
+
+.brand-panel{
+  padding:38px;
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.brand-panel.light{
+  background:#ddd4c7;
+  color:var(--ink);
+}
+
+.brand-panel .brand-name{
+  font-size:12px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+
+.brand-panel h3{
+  font-size:42px;
+  margin:18px 0 8px;
+}
+
+.brand-panel p{
+  font-size:13px;
+  line-height:1.7;
+  max-width:470px;
+  margin:0 0 22px;
+  color:#c9c1b7;
+}
+
+.brand-panel.light p{
+  color:#5d574f;
+}
+
+.product-disclaimer{
+  font-size:10px;
+  line-height:1.6;
+  color:var(--muted);
+  margin-top:22px;
+}
+
+.work-head{
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  align-items:end;
+  margin-bottom:55px;
+}
+
+.work-head p{
+  max-width:390px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.featured{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
   gap:24px;
 }
 
 .card{
-  min-height:420px;
-  padding:45px;
-  border:1px solid #d6d0c5;
-  background:#faf8f3;
+  background:var(--white);
+}
+
+.photo{
+  height:640px;
+}
+
+.card-body{
+  padding:22px;
+}
+
+.card-body h3{
+  font-size:32px;
+  margin:0 0 7px;
+}
+
+.card-body p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-top:24px;
+}
+
+.grid .photo{
+  height:470px;
+}
+
+.services{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.services .kicker{
+  color:#bcb4a9;
+}
+
+.services-list{
+  margin-top:65px;
+  border-top:1px solid #4b4843;
+}
+
+.service{
+  display:grid;
+  grid-template-columns:80px 1fr 1.4fr;
+  gap:25px;
+  padding:32px 0;
+  border-bottom:1px solid #4b4843;
+}
+
+.service span{
+  font-size:11px;
+  color:#aaa198;
+}
+
+.service h3{
+  font-size:34px;
+  margin:0;
+}
+
+.service p{
+  font-size:14px;
+  line-height:1.7;
+  color:#c8c1b8;
+  margin:0;
+  max-width:600px;
+}
+
+.craft{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:0;
+  padding:0;
+  background:var(--white);
+}
+
+.craft-photo{
+  min-height:650px;
+}
+
+.craft-copy{
+  padding:100px 8vw;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  transition:.25s;
+  justify-content:center;
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.craft-copy h2{
+  font-size:clamp(52px,6vw,82px);
+  line-height:.95;
+  margin:25px 0;
 }
 
-.card h3{
-  font-family:Georgia,serif;
-  font-size:48px;
-  font-weight:normal;
-  margin:0 0 15px;
-}
-
-.card p{
+.craft-copy p{
   font-size:17px;
-  line-height:1.6;
-  color:#68645d;
-  max-width:450px;
+  line-height:1.8;
+  color:var(--muted);
+  max-width:520px;
 }
 
-.card a{
-  display:inline-block;
-  margin-top:18px;
-  color:#222;
-  text-decoration:none;
-  border-bottom:1px solid #222;
-  width:max-content;
+.process{
+  border-top:1px solid var(--line);
 }
 
-.card-wide{
-  grid-column:1 / -1;
-  min-height:330px;
-  background:#e9e3d8;
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:35px;
+  margin-top:65px;
+}
+
+.step{
+  border-top:1px solid var(--line);
+  padding-top:22px;
+}
+
+.step span{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.step h3{
+  font-size:30px;
+  margin:22px 0 8px;
+}
+
+.step p{
+  font-size:13px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.quote{
+  background:var(--warm);
+  color:white;
+  text-align:center;
+  padding:125px 6vw;
+}
+
+.quote .eyebrow{
+  color:#eadfd2;
+}
+
+.quote h2{
+  font-size:clamp(60px,7vw,100px);
+  line-height:.9;
+  margin:25px 0 45px;
+}
+
+.quote .btn{
+  background:white;
+  color:var(--ink);
 }
 
 .contact{
-  padding:110px 6%;
-  background:#222;
-  color:#f4f1ea;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:10vw;
+}
+
+.contact h2{
+  font-size:clamp(58px,6.5vw,92px);
+  line-height:.92;
+  margin:25px 0;
 }
 
 .contact p{
-  max-width:650px;
-  font-size:20px;
-  line-height:1.7;
-  color:#c9c4bb;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--muted);
 }
 
-.contact a{
-  display:inline-block;
-  margin-top:25px;
-  color:#f4f1ea;
-  text-decoration:none;
-  border-bottom:1px solid #f4f1ea;
-  padding-bottom:5px;
+.details{
+  padding-top:50px;
 }
 
-footer{
-  padding:35px 6%;
-  background:#222;
-  color:#aaa;
-  border-top:1px solid #444;
-  font-size:13px;
+.details strong{
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.details a{
+  border-bottom:1px solid var(--line);
+}
+
+.footer{
+  background:#242320;
+  color:#eee9e0;
+  padding:42px 6vw;
   display:flex;
   justify-content:space-between;
+  gap:25px;
+  font-size:10px;
+  letter-spacing:.06em;
 }
 
-@media(max-width:700px){
-  header{
-    height:auto;
-    padding:24px 6%;
-    align-items:flex-start;
+.footer .logo{
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:850px){
+
+  .header{
+    height:70px;
+    padding:0 6vw;
   }
 
-  nav{
-    gap:14px;
+  .header .cta{
+    display:none;
   }
 
-  nav a{
+  .menu-btn{
+    display:block;
+  }
+
+  .nav{
+    display:none;
+    position:absolute;
+    top:70px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:25px 7vw;
+    flex-direction:column;
+    gap:0;
+  }
+
+  .nav.open{
+    display:flex;
+  }
+
+  .nav a{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
     font-size:12px;
   }
 
-  .hero{
-    min-height:75vh;
-    padding:70px 6%;
-  }
-
-  .hero h1{
-    font-size:70px;
-  }
-
-  .hero p{
-    font-size:18px;
-  }
-
-  .grid{
+  .hero,
+  .intro,
+  .featured,
+  .craft,
+  .contact{
     grid-template-columns:1fr;
   }
 
-  .card-wide{
-    grid-column:auto;
+  .hero{
+    padding-top:105px;
   }
 
-  .card{
-    min-height:350px;
-    padding:30px;
+  .hero-photo{
+    height:65vh;
   }
 
-  .card h3{
-    font-size:40px;
+  .section{
+    padding:90px 7vw;
   }
 
-  footer{
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .service{
+    grid-template-columns:45px 1fr;
+  }
+
+  .service p{
+    grid-column:2;
+  }
+
+  .craft-photo{
+    min-height:60vh;
+  }
+
+  .footer{
     display:block;
+  }
+
+  .footer>*{
+    display:block;
+    margin:9px 0;
+  }
+}
+
+@media(max-width:540px){
+
+  h1{
+    font-size:68px;
+  }
+
+  .grid,
+  .process-grid,
+  .product-grid,
+  .brand-strip{
+    grid-template-columns:1fr;
+  }
+
+  .photo,
+  .grid .photo{
+    height:440px;
+  }
+
+  .hero-photo{
+    height:55vh;
+  }
+
+  .service{
+    grid-template-columns:38px 1fr;
+  }
+
+  .service h3{
+    font-size:28px;
+  }
+
+  .contact .details{
+    padding-top:10px;
+  }
+
+  .product-block-head{
+    display:block;
+  }
+
+  .product-block-head p{
+    margin-top:12px;
+  }
+
+  .actions{
+    flex-direction:column;
+    align-items:flex-start;
   }
 }
 </style>
@@ -233,96 +762,682 @@ footer{
 
 <body>
 
-<header>
-  <div class="logo">SKANDIVA</div>
+<header class="header">
 
-  <nav>
+  <a class="logo" href="#top">SKANDIVA</a>
+
+  <nav class="nav" id="mainNav">
     <a href="#produkter">Produkter</a>
-    <a href="#restaurering">Restaurering</a>
+    <a href="#projekt">Restaurering</a>
+    <a href="#tjanster">Tjänster</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
+
+  <div class="header-actions">
+    <a class="cta" href="#kontakt">Begär offert</a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Öppna meny">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
 </header>
 
-<section class="hero">
-  <div>
-    <small>Skandinaviska designklassiker</small>
+<main id="top">
 
-    <h1>Form.<br>Hantverk.</h1>
+<section class="hero">
+
+  <div>
+
+    <div class="eyebrow">
+      Restaurering · Omklädsel · Skandinaviska designklassiker
+    </div>
+
+    <h1>
+      Bevara<br>
+      <em>originalet.</em>
+    </h1>
+
+    <p class="lead">
+      Vi kombinerar originalprodukter från utvalda skandinaviska varumärken med restaurering och omklädsel utförd i vår egen verkstad.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="#produkter">Se produkter</a>
+      <a class="textlink" href="#projekt">Se restaurering ↗</a>
+    </div>
+
+  </div>
+
+  <div class="hero-photo">
+    <img src="assets/hero.jpg" alt="Restaurerad skandinavisk fåtölj i läder">
+  </div>
+
+</section>
+
+
+<section class="section products-intro" id="produkter">
+
+  <div class="kicker">01 — Originalprodukter</div>
+
+  <h2 class="section-title">
+    Designklassiker,<br>
+    <em>original från tillverkaren.</em>
+  </h2>
+
+  <p class="product-note">
+    Skandiva erbjuder utvalda originalprodukter från DUX och andra skandinaviska designvarumärken. Här skiljer vi tydligt mellan nya originalprodukter och möbler som har restaurerats eller klätts om av Skandiva.
+  </p>
+
+
+  <div class="product-block">
+
+    <div class="product-block-head">
+
+      <div>
+        <div class="kicker">DUX</div>
+        <h3>DUX Original</h3>
+      </div>
+
+      <p>
+        Originalprodukter från DUX. Vi hjälper dig med modell, utförande, klädsel och beställning. Priser publiceras när vi har lagt in Skandivas aktuella prislista.
+      </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Jetson</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj · Bruno Mathsson</div>
+          <h4>Jetson</h4>
+          <p>Ikonisk svensk fåtölj med hög rygg, nackkudde och kromat snurrunderrede.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/jetson" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Karin</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj · Bruno Mathsson</div>
+          <h4>Karin</h4>
+          <p>Klassisk fåtölj med kromat underrede och flera val av klädsel och utförande.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/karin" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Karin 73</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj · Bruno Mathsson</div>
+          <h4>Karin 73</h4>
+          <p>Elegant klassiker med djuphäftad sits och rygg på förkromat underrede.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/karin-73" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Pernilla 69</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj · Bruno Mathsson</div>
+          <h4>Pernilla 69</h4>
+          <p>Formpressad bok, mjuka kuddar och en design byggd kring sittkomfort.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/pernilla-69" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Ingrid</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj · Bruno Mathsson</div>
+          <h4>Ingrid</h4>
+          <p>Fåtölj i formpressad bok med klassiskt knappstoppade dynor.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/ingrid" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Spider</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Fåtölj</div>
+          <h4>Spider</h4>
+          <p>Avslappnad design med DUX komfortsystem och mjuka, stödjande plymåer.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/produkter/mobler/fatoljer/spider-fatolj" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Karin 73</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">2-sitssoffa</div>
+          <h4>Karin 73 2-sits</h4>
+          <p>Den klassiska Karin 73-formen i en ny tvåsitsig version.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/en-se/products/furniture/sofas/karin-73-2-seater" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="product-card">
+        <div class="product-visual">
+          <div>
+            <div class="brand">DUX Original</div>
+            <div class="model">Karin 73</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">3-sitssoffa</div>
+          <h4>Karin 73 3-sits</h4>
+          <p>En större Karin 73 med samma klassiska uttryck och komfort.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.dux.se/en-se/products/furniture/sofas/karin-73-3-seater" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+
+    <div class="brand-strip">
+
+      <div class="brand-panel">
+        <div class="brand-name">DUX Original</div>
+        <h3>Beställ med Skandiva.</h3>
+        <p>
+          Vi hjälper dig att välja modell och utförande och återkommer med aktuell offert baserad på DUX:s prislista.
+        </p>
+        <a class="btn" href="#kontakt">Begär DUX-pris</a>
+      </div>
+
+      <div class="brand-panel light">
+        <div class="brand-name">Original & restaurering</div>
+        <h3>Två tydliga världar.</h3>
+        <p>
+          Nya originalprodukter presenteras separat från våra restaurerade och omklädda möbler.
+        </p>
+        <a class="textlink" href="#projekt">Se restaurering ↗</a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="product-block">
+
+    <div class="product-block-head">
+
+      <div>
+        <div class="kicker">LAMINO · SWEDESE</div>
+        <h3>Lamino</h3>
+      </div>
+
+      <p>
+        Lamino är en självklar del av det skandinaviska designarvet. Vi presenterar originalprodukten separat och kan även hjälpa till med restaurering och omklädsel.
+      </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+      <article class="product-card">
+
+        <div class="product-visual">
+          <div>
+            <div class="brand">Swedese</div>
+            <div class="model">Lamino</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Original fåtölj</div>
+          <h4>Lamino</h4>
+          <p>Yngve Ekströms ikoniska fåtölj från Swedese.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.swedese.se/produkter/fatoljer/lamino-fatolj" target="_blank" rel="noopener">Produkt ↗</a>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="product-card">
+
+        <div class="product-visual">
+          <div>
+            <div class="brand">Swedese</div>
+            <div class="model">Lamino</div>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <div class="tag">Original · tillbehör</div>
+          <h4>Lamino pall</h4>
+          <p>Matchande pall för extra komfort och ett komplett uttryck.</p>
+
+          <div class="product-footer">
+            <span class="price">Pris på förfrågan</span>
+            <a class="product-link" href="https://www.swedese.se/" target="_blank" rel="noopener">Swedese ↗</a>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+    <p class="product-disclaimer">
+      Produktnamn och grundläggande produktfakta är hämtade från respektive tillverkares aktuella produktinformation. Priser och tillgänglighet hos Skandiva läggs in enligt våra aktuella återförsäljarvillkor.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="section intro" id="filosofi">
+
+  <div class="kicker">02 — Vår filosofi</div>
+
+  <div>
+    <h2>
+      Varje möbel bär på en <em>historia.</em>
+    </h2>
 
     <p>
-      Originalprodukter från DUX och Lamino,
-      tillsammans med restaurering och omklädsel
-      av klassiska möbler.
+      På Skandiva arbetar vi med klassiska möbler som förtjänar att leva vidare. Vi restaurerar varsamt, klär om med omsorg och arbetar med material som låter möbelns form och karaktär stå i centrum.
     </p>
   </div>
+
 </section>
 
-<section class="intro">
-  <span class="section-label">Skandiva Stockholm</span>
 
-  <h2>Klassisk design.<br>Omsorgsfullt hantverk.</h2>
-</section>
+<section class="section" id="projekt">
 
-<section class="products" id="produkter">
+  <div class="work-head">
 
-  <span class="section-label">Produkter</span>
+    <div>
+      <div class="kicker">03 — Restaurering</div>
+      <h2 class="section-title">
+        Arbeten med <em>karaktär.</em>
+      </h2>
+    </div>
 
-  <h2>Utvalda klassiker.</h2>
+    <p>
+      Här visar vi ett urval av restaurerade möbler från vår verkstad. Bilderna visar våra egna färdiga arbeten.
+    </p>
+
+  </div>
+
+
+  <div class="featured">
+
+    <article class="card">
+      <div class="photo">
+        <img src="assets/brown-chair.jpg" alt="Restaurerad brun skinnfåtölj">
+      </div>
+
+      <div class="card-body">
+        <h3>Restaurerad klassiker</h3>
+        <p>Omklädsel · Läder · Detaljarbete</p>
+      </div>
+    </article>
+
+
+    <article class="card">
+      <div class="photo">
+        <img src="assets/black-chair.jpg" alt="Restaurerad svart fåtölj">
+      </div>
+
+      <div class="card-body">
+        <h3>Svart läder</h3>
+        <p>Restaurering · Omklädsel · Hantverk</p>
+      </div>
+    </article>
+
+  </div>
+
 
   <div class="grid">
 
-    <div class="card">
-      <h3>DUX Original</h3>
-      <p>
-        Fåtöljer och matchande pall med
-        klassisk skandinavisk form.
-      </p>
-      <a href="#kontakt">Läs mer</a>
-    </div>
+    <article class="card">
+      <div class="photo">
+        <img src="assets/black-pair.jpg" alt="Två restaurerade svarta fåtöljer">
+      </div>
 
-    <div class="card">
-      <h3>Lamino</h3>
-      <p>
-        Original fåtölj och pall med
-        tidlös svensk design.
-      </p>
-      <a href="#kontakt">Läs mer</a>
-    </div>
+      <div class="card-body">
+        <h3>Ett par</h3>
+        <p>Restaurering · Matchande utförande</p>
+      </div>
+    </article>
 
-    <div class="card card-wide" id="restaurering">
+
+    <article class="card">
+      <div class="photo">
+        <img src="assets/blue-chair.jpg" alt="Skandinavisk fåtölj efter restaurering">
+      </div>
+
+      <div class="card-body">
+        <h3>Ny klädsel</h3>
+        <p>Omklädsel · Materialval</p>
+      </div>
+    </article>
+
+
+    <article class="card">
+      <div class="photo">
+        <img src="assets/brown-pair.jpg" alt="Två restaurerade bruna fåtöljer">
+      </div>
+
+      <div class="card-body">
+        <h3>Detaljer som håller</h3>
+        <p>Läder · Sömnad · Restaurering</p>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+
+<section class="section services" id="tjanster">
+
+  <div class="kicker">04 — Tjänster</div>
+
+  <h2 class="section-title">
+    Hantverk för<br>
+    <em>generationer.</em>
+  </h2>
+
+
+  <div class="services-list">
+
+    <div class="service">
+      <span>01</span>
       <h3>Restaurering</h3>
       <p>
-        Restaurering och omklädsel utförd med
-        respekt för möbelns ursprung och material.
+        Varsam restaurering av klassiska möbler med fokus på konstruktion, proportioner, material och originalkänsla.
       </p>
-      <a href="#kontakt">Se vårt hantverk</a>
+    </div>
+
+    <div class="service">
+      <span>02</span>
+      <h3>Omklädsel</h3>
+      <p>
+        Professionell omklädsel i läder och utvalda textilier, anpassad efter möbelns form och användning.
+      </p>
+    </div>
+
+    <div class="service">
+      <span>03</span>
+      <h3>Detaljarbete</h3>
+      <p>
+        Sömnad, knappar, stoppning och andra detaljer som gör att helheten känns genomarbetad.
+      </p>
+    </div>
+
+    <div class="service">
+      <span>04</span>
+      <h3>Möbelvård</h3>
+      <p>
+        Vård och förbättring av material och ytor för att förlänga möbelns liv och bevara dess uttryck.
+      </p>
     </div>
 
   </div>
+
 </section>
 
-<section class="contact" id="kontakt">
 
-  <span class="section-label">Kontakt</span>
+<section class="craft">
 
-  <h2>Har du en möbel?</h2>
+  <div class="craft-photo">
+    <img src="assets/black-pair.jpg" alt="Detalj av restaurerade designfåtöljer">
+  </div>
 
-  <p>
-    Kontakta Skandiva Stockholm för information
-    om produkter, restaurering och omklädsel.
-    Vi berättar gärna mer om möjligheterna.
-  </p>
+  <div class="craft-copy">
 
-  <a href="mailto:info@skandiva-stockholm.se">
-    Kontakta Skandiva
+    <div class="kicker">05 — Hantverket</div>
+
+    <h2>
+      Detaljerna<br>
+      <em>gör skillnaden.</em>
+    </h2>
+
+    <p>
+      En bra restaurering ska kännas lika bra som den ser ut. Vi lägger stor vikt vid sömmar, stoppning, spänst, passform och materialens naturliga uttryck.
+    </p>
+
+    <a class="textlink" href="#kontakt">
+      Berätta om din möbel ↗
+    </a>
+
+  </div>
+
+</section>
+
+
+<section class="section process" id="process">
+
+  <div class="kicker">06 — Så arbetar vi</div>
+
+  <h2 class="section-title">
+    Från första bilden<br>
+    till <em>färdig klassiker.</em>
+  </h2>
+
+
+  <div class="process-grid">
+
+    <div class="step">
+      <span>01</span>
+      <h3>Skicka bilder</h3>
+      <p>Skicka några tydliga bilder och berätta kort om möbeln.</p>
+    </div>
+
+    <div class="step">
+      <span>02</span>
+      <h3>Bedömning</h3>
+      <p>Vi går igenom skick, material och vad som behöver göras.</p>
+    </div>
+
+    <div class="step">
+      <span>03</span>
+      <h3>Restaurering</h3>
+      <p>Arbetet utförs noggrant i vår verkstad i Stocksund.</p>
+    </div>
+
+    <div class="step">
+      <span>04</span>
+      <h3>Leverans</h3>
+      <p>Du får tillbaka en möbel som är redo för många nya år.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="quote">
+
+  <div class="eyebrow">
+    En möbel värd att bevara?
+  </div>
+
+  <h2>
+    Berätta om<br>
+    <em>din möbel.</em>
+  </h2>
+
+  <a class="btn" href="#kontakt">
+    Begär offert
   </a>
 
 </section>
 
-<footer>
-  <span>SKANDIVA STOCKHOLM AB</span>
-  <span>Skandinavisk design & hantverk</span>
+
+<section class="section contact" id="kontakt">
+
+  <div>
+
+    <div class="kicker">07 — Kontakt</div>
+
+    <h2>
+      Välkommen<br>
+      <em>till Skandiva.</em>
+    </h2>
+
+    <p>
+      Skicka bilder på din möbel så återkommer vi med en första bedömning. Verkstadsbesök sker efter överenskommelse.
+    </p>
+
+  </div>
+
+
+  <div class="details">
+
+    <strong>Skandiva Stockholm AB</strong>
+
+    <p>
+      Stockholmsvägen 45 C<br>
+      182 78 Stocksund
+    </p>
+
+    <p>
+      <a href="tel:+46767106658">076-710 66 58</a><br>
+      <a href="tel:+46765924430">076-592 44 30</a>
+    </p>
+
+    <p>
+      <a href="mailto:Omar.atrash@outlook.com">
+        Omar.atrash@outlook.com
+      </a>
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+  <span class="logo">SKANDIVA</span>
+
+  <span>
+    Restaurering · Omklädsel · Designklassiker
+  </span>
+
+  <span>
+    © 2026 Skandiva Stockholm AB
+  </span>
+
 </footer>
+
+
+<script>
+
+const menuBtn = document.getElementById("menuBtn");
+const mainNav = document.getElementById("mainNav");
+
+menuBtn.addEventListener("click", function(){
+  mainNav.classList.toggle("open");
+});
+
+mainNav.querySelectorAll("a").forEach(function(link){
+
+  link.addEventListener("click", function(){
+    mainNav.classList.remove("open");
+  });
+
+});
+
+</script>
 
 </body>
 </html>
