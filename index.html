@@ -11,6 +11,7 @@ content="Skandiva restaurerar och klär om skandinaviska designklassiker med res
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
@@ -41,6 +42,11 @@ body{
   font-family:"DM Sans",Arial,sans-serif;
 }
 
+img{
+  display:block;
+  width:100%;
+}
+
 a{
   color:inherit;
   text-decoration:none;
@@ -49,6 +55,8 @@ a{
 button{
   font:inherit;
 }
+
+/* HEADER */
 
 .header{
   position:fixed;
@@ -102,7 +110,8 @@ button{
 .btn{
   display:inline-block;
   background:var(--ink);
-  color:white;
+  color:#fff;
+
   padding:14px 20px;
 
   font-size:10px;
@@ -130,6 +139,7 @@ button{
   height:1px;
   width:20px;
   margin:5px auto;
+
   background:var(--ink);
 }
 
@@ -137,11 +147,14 @@ button{
 
 .hero{
   min-height:100vh;
+
   padding:130px 5vw 70px;
 
   display:grid;
   grid-template-columns:.9fr 1.1fr;
+
   gap:6vw;
+
   align-items:center;
 }
 
@@ -151,6 +164,7 @@ button{
 
   font-size:10px;
   font-weight:600;
+
   letter-spacing:.18em;
   text-transform:uppercase;
 }
@@ -187,92 +201,64 @@ h2 em{
   display:flex;
   align-items:center;
   gap:25px;
+
   margin-top:35px;
 }
 
 .textlink{
   font-size:11px;
+
   letter-spacing:.09em;
   text-transform:uppercase;
 
   border-bottom:1px solid var(--ink);
+
   padding-bottom:4px;
 }
 
-/* HERO VISUAL */
+/* HERO IMAGE */
 
 .hero-visual{
   min-height:650px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
   position:relative;
   overflow:hidden;
 
+  background:#ddd3c5;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(41,39,36,.12);
+}
+
+.hero-visual img{
+  width:100%;
+  height:650px;
+
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
   background:
-    radial-gradient(circle at 50% 35%,#d9c9b5 0 14%,transparent 14.5%),
-    linear-gradient(145deg,#cbbba7,#8f7963);
-
-  box-shadow:inset 0 0 0 1px rgba(41,39,36,.12);
-}
-
-.hero-chair{
-  width:52%;
-  height:48%;
-  position:relative;
-
-  background:#4b4037;
-
-  border-radius:42% 42% 18% 18%;
-
-  box-shadow:
-    0 35px 45px rgba(0,0,0,.22);
-}
-
-.hero-chair:before{
-  content:"";
-  position:absolute;
-
-  width:78%;
-  height:65%;
-
-  left:11%;
-  top:-40%;
-
-  background:#584b40;
-
-  border-radius:50% 50% 20% 20%;
-}
-
-.hero-chair:after{
-  content:"";
-
-  position:absolute;
-
-  width:150%;
-  height:18px;
-
-  left:-25%;
-  bottom:-25px;
-
-  border-radius:50%;
-
-  background:#28231f;
-  box-shadow:
-    -85px 38px 0 -5px #28231f,
-    85px 38px 0 -5px #28231f;
+    linear-gradient(
+      to top,
+      rgba(25,22,19,.40),
+      transparent 48%
+    );
 }
 
 .hero-label{
   position:absolute;
+
   right:28px;
   bottom:25px;
 
   color:white;
 
   font-size:10px;
+
   letter-spacing:.18em;
   text-transform:uppercase;
 }
@@ -289,7 +275,9 @@ h2 em{
 
 .section-title{
   font-size:clamp(52px,6.2vw,88px);
+
   line-height:.95;
+
   margin:20px 0;
 }
 
@@ -310,8 +298,10 @@ h2 em{
 
 .product-block-head{
   display:flex;
+
   justify-content:space-between;
   align-items:end;
+
   gap:40px;
 
   margin-bottom:30px;
@@ -319,11 +309,13 @@ h2 em{
 
 .product-block-head h3{
   margin:8px 0 0;
+
   font-size:42px;
 }
 
 .product-block-head p{
   max-width:480px;
+
   margin:0;
 
   color:var(--muted);
@@ -334,89 +326,79 @@ h2 em{
 
 .product-grid{
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:18px;
 }
 
 .product-card{
-  min-height:400px;
+  min-height:430px;
 
   display:flex;
   flex-direction:column;
 
   background:#eee9e0;
+
   border:1px solid #ded5c8;
+
+  overflow:hidden;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.product-card:hover{
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 18px 35px rgba(41,39,36,.10);
 }
 
 .product-visual{
-  height:235px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  height:270px;
 
   position:relative;
   overflow:hidden;
 
-  background:
-    radial-gradient(circle at 50% 35%,#faf7f1 0 10%,transparent 10.5%),
-    linear-gradient(145deg,#f8f5ef,#d7cec0);
+  background:#eee9e0;
 }
 
-.product-visual:before{
-  content:"";
+.product-visual img{
+  width:100%;
+  height:100%;
 
+  object-fit:cover;
+
+  transition:transform .5s ease;
+}
+
+.product-card:hover .product-visual img{
+  transform:scale(1.04);
+}
+
+.image-caption{
   position:absolute;
 
-  width:170px;
-  height:120px;
+  left:14px;
+  bottom:14px;
 
-  border:1px solid rgba(41,39,36,.2);
+  padding:7px 10px;
 
-  border-radius:55% 45% 42% 58%;
+  background:rgba(255,253,250,.92);
 
-  transform:rotate(-9deg);
-}
+  color:var(--ink);
 
-.product-visual:after{
-  content:"";
+  font-size:9px;
 
-  position:absolute;
-
-  width:110px;
-  height:45px;
-
-  bottom:35px;
-
-  border-bottom:2px solid rgba(41,39,36,.25);
-  border-radius:50%;
-}
-
-.brand{
-  position:relative;
-  z-index:2;
-
-  text-align:center;
-
-  font-size:11px;
-  letter-spacing:.25em;
+  letter-spacing:.12em;
   text-transform:uppercase;
-}
-
-.model{
-  position:relative;
-  z-index:2;
-
-  margin-top:10px;
-
-  font-family:"DM Serif Display",Georgia,serif;
-  font-size:30px;
-
-  text-align:center;
 }
 
 .product-body{
   flex:1;
+
   padding:20px;
 
   display:flex;
@@ -427,12 +409,14 @@ h2 em{
   color:var(--muted);
 
   font-size:9px;
+
   letter-spacing:.16em;
   text-transform:uppercase;
 }
 
 .product-body h4{
   margin:9px 0 7px;
+
   font-size:28px;
 }
 
@@ -451,27 +435,35 @@ h2 em{
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:12px;
 }
 
 .price{
   font-size:10px;
+
   letter-spacing:.08em;
   text-transform:uppercase;
 }
 
 .product-link{
   font-size:10px;
+
   letter-spacing:.1em;
   text-transform:uppercase;
 
   border-bottom:1px solid var(--ink);
+
   padding-bottom:4px;
 }
 
+/* BRAND PANELS */
+
 .brand-strip{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:18px;
 
   margin-top:60px;
@@ -481,22 +473,26 @@ h2 em{
   padding:40px;
 
   background:var(--ink);
+
   color:var(--paper);
 }
 
 .brand-panel.light{
   background:#ddd4c7;
+
   color:var(--ink);
 }
 
 .brand-name{
   font-size:11px;
+
   letter-spacing:.22em;
   text-transform:uppercase;
 }
 
 .brand-panel h3{
   margin:18px 0 10px;
+
   font-size:42px;
 }
 
@@ -528,7 +524,9 @@ h2 em{
   background:var(--white);
 
   display:grid;
+
   grid-template-columns:.7fr 2fr;
+
   gap:8vw;
 }
 
@@ -545,8 +543,10 @@ h2 em{
 
 .work-head{
   display:flex;
+
   justify-content:space-between;
   align-items:end;
+
   gap:50px;
 
   margin-bottom:55px;
@@ -554,6 +554,7 @@ h2 em{
 
 .work-head p{
   max-width:390px;
+
   margin:0;
 
   color:var(--muted);
@@ -564,21 +565,42 @@ h2 em{
 
 .featured{
   display:grid;
+
   grid-template-columns:1.25fr .75fr;
+
   gap:24px;
 }
 
 .card{
   background:var(--white);
+
+  overflow:hidden;
 }
 
 .photo{
   height:640px;
+
+  overflow:hidden;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:transform .6s ease;
+}
+
+.card:hover .photo img{
+  transform:scale(1.025);
 }
 
 .grid{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:24px;
 
   margin-top:24px;
@@ -588,99 +610,30 @@ h2 em{
   height:470px;
 }
 
-/* GENERATED PHOTO VISUALS */
-
-.visual{
-  height:100%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  position:relative;
-  overflow:hidden;
+.card-body{
+  padding:25px;
 }
 
-.visual.brown{
-  background:
-    radial-gradient(circle at 50% 35%,#80624c 0 18%,transparent 18.5%),
-    linear-gradient(135deg,#d1c0ab,#7b604b);
+.card-body h3{
+  margin:0 0 8px;
+
+  font-size:31px;
 }
 
-.visual.black{
-  background:
-    radial-gradient(circle at 50% 34%,#2f2c28 0 18%,transparent 18.5%),
-    linear-gradient(135deg,#a99f93,#3a3732);
-}
+.card-body p{
+  margin:0;
 
-.visual.blue{
-  background:
-    radial-gradient(circle at 50% 34%,#405568 0 18%,transparent 18.5%),
-    linear-gradient(135deg,#d0d2cd,#667989);
-}
+  color:var(--muted);
 
-.visual-chair{
-  width:38%;
-  height:38%;
-
-  position:relative;
-
-  border-radius:45% 45% 15% 15%;
-
-  background:rgba(55,45,38,.9);
-
-  box-shadow:0 25px 35px rgba(0,0,0,.25);
-}
-
-.visual-chair:before{
-  content:"";
-
-  position:absolute;
-
-  width:80%;
-  height:70%;
-
-  left:10%;
-  top:-55%;
-
-  border-radius:50% 50% 20% 20%;
-
-  background:inherit;
-}
-
-.visual-chair:after{
-  content:"";
-
-  position:absolute;
-
-  width:140%;
-  height:10px;
-
-  left:-20%;
-  bottom:-28px;
-
-  background:#272522;
-
-  box-shadow:-55px 25px 0 -2px #272522,
-             55px 25px 0 -2px #272522;
-}
-
-.visual.brown .visual-chair{
-  background:#654a38;
-}
-
-.visual.blue .visual-chair{
-  background:#465b6d;
-}
-
-.visual.black .visual-chair{
-  background:#252421;
+  font-size:12px;
+  line-height:1.7;
 }
 
 /* SERVICES */
 
 .services{
   background:var(--ink);
+
   color:var(--paper);
 }
 
@@ -696,7 +649,9 @@ h2 em{
 
 .service{
   display:grid;
+
   grid-template-columns:80px 1fr 1.4fr;
+
   gap:25px;
 
   padding:32px 0;
@@ -706,16 +661,19 @@ h2 em{
 
 .service span{
   color:#aaa198;
+
   font-size:11px;
 }
 
 .service h3{
   margin:0;
+
   font-size:34px;
 }
 
 .service p{
   max-width:600px;
+
   margin:0;
 
   color:#c8c1b8;
@@ -728,6 +686,7 @@ h2 em{
 
 .craft{
   display:grid;
+
   grid-template-columns:1fr 1fr;
 
   background:var(--white);
@@ -735,6 +694,15 @@ h2 em{
 
 .craft-visual{
   min-height:650px;
+
+  overflow:hidden;
+}
+
+.craft-visual img{
+  width:100%;
+  height:650px;
+
+  object-fit:cover;
 }
 
 .craft-copy{
@@ -749,6 +717,7 @@ h2 em{
   margin:25px 0;
 
   font-size:clamp(52px,6vw,82px);
+
   line-height:.95;
 }
 
@@ -769,7 +738,9 @@ h2 em{
 
 .process-grid{
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:35px;
 
   margin-top:65px;
@@ -783,11 +754,13 @@ h2 em{
 
 .step span{
   color:var(--muted);
+
   font-size:10px;
 }
 
 .step h3{
   margin:22px 0 8px;
+
   font-size:30px;
 }
 
@@ -804,6 +777,7 @@ h2 em{
   padding:125px 6vw;
 
   background:var(--warm);
+
   color:white;
 
   text-align:center;
@@ -817,11 +791,13 @@ h2 em{
   margin:25px 0 45px;
 
   font-size:clamp(60px,7vw,100px);
+
   line-height:.9;
 }
 
 .quote .btn{
   background:white;
+
   color:var(--ink);
 }
 
@@ -829,7 +805,9 @@ h2 em{
 
 .contact{
   display:grid;
+
   grid-template-columns:1.25fr .75fr;
+
   gap:10vw;
 }
 
@@ -837,6 +815,7 @@ h2 em{
   margin:25px 0;
 
   font-size:clamp(58px,6.5vw,92px);
+
   line-height:.92;
 }
 
@@ -853,6 +832,7 @@ h2 em{
 
 .details strong{
   font-size:10px;
+
   letter-spacing:.15em;
   text-transform:uppercase;
 }
@@ -867,13 +847,17 @@ h2 em{
   padding:42px 6vw;
 
   display:flex;
+
   justify-content:space-between;
+
   gap:25px;
 
   background:#242320;
+
   color:#eee9e0;
 
   font-size:10px;
+
   letter-spacing:.06em;
 }
 
@@ -912,6 +896,7 @@ h2 em{
     display:none;
 
     position:absolute;
+
     top:70px;
     left:0;
     right:0;
@@ -919,9 +904,11 @@ h2 em{
     padding:20px 7vw;
 
     background:var(--paper);
+
     border-bottom:1px solid var(--line);
 
     flex-direction:column;
+
     gap:0;
   }
 
@@ -931,6 +918,7 @@ h2 em{
 
   .nav a{
     padding:16px 0;
+
     border-bottom:1px solid var(--line);
   }
 
@@ -948,6 +936,10 @@ h2 em{
 
   .hero-visual{
     min-height:550px;
+  }
+
+  .hero-visual img{
+    height:550px;
   }
 
   .section{
@@ -978,6 +970,10 @@ h2 em{
     min-height:550px;
   }
 
+  .craft-visual img{
+    height:550px;
+  }
+
   .footer{
     display:block;
   }
@@ -1001,6 +997,10 @@ h2 em{
     min-height:440px;
   }
 
+  .hero-visual img{
+    height:440px;
+  }
+
   .product-grid,
   .grid,
   .process-grid,
@@ -1015,6 +1015,10 @@ h2 em{
 
   .craft-visual{
     min-height:440px;
+  }
+
+  .craft-visual img{
+    height:440px;
   }
 
   .product-block-head{
@@ -1056,13 +1060,9 @@ h2 em{
   <nav class="nav" id="mainNav">
 
     <a href="#produkter">Produkter</a>
-
     <a href="#projekt">Restaurering</a>
-
     <a href="#tjanster">Tjänster</a>
-
     <a href="#process">Process</a>
-
     <a href="#kontakt">Kontakt</a>
 
   </nav>
@@ -1106,7 +1106,8 @@ h2 em{
     </h1>
 
     <p class="lead">
-      Vi restaurerar och klär om skandinaviska designklassiker med respekt för form, material och hantverk.
+      Vi restaurerar och klär om skandinaviska designklassiker
+      med respekt för form, material och hantverk.
     </p>
 
     <div class="actions">
@@ -1125,7 +1126,11 @@ h2 em{
 
   <div class="hero-visual">
 
-    <div class="hero-chair"></div>
+    <img
+      src="https://shop.duxiana.no/cdn/shop/files/Furniture-Easy-Chair-Jetson-nordic-light-rustical-12114-PI-1.1-2-1_2.jpg?v=1688555013"
+      alt="DUX Jetson fåtölj">
+
+    <div class="hero-overlay"></div>
 
     <div class="hero-label">
       SKANDIVA · STOCKHOLM
@@ -1149,8 +1154,12 @@ h2 em{
   </h2>
 
   <p class="product-note">
-    Skandiva erbjuder utvalda originalprodukter från skandinaviska designvarumärken. Nya originalprodukter presenteras separat från möbler som restaureras eller kläs om av Skandiva.
+    Skandiva erbjuder utvalda originalprodukter från skandinaviska
+    designvarumärken. Nya originalprodukter presenteras separat från
+    möbler som restaureras eller kläs om av Skandiva.
   </p>
+
+  <!-- DUX -->
 
   <div class="product-block">
 
@@ -1169,28 +1178,28 @@ h2 em{
       </div>
 
       <p>
-        Originalprodukter från DUX. Kontakta oss för modell, utförande, klädsel och aktuell offert.
+        Originalprodukter från DUX. Kontakta oss för modell,
+        utförande, klädsel och aktuell offert.
       </p>
 
     </div>
 
     <div class="product-grid">
 
+      <!-- JETSON -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://shop.duxiana.no/cdn/shop/files/Furniture-Easy-Chair-Jetson-nordic-light-rustical-12114-PI-1.1-2-1_2.jpg?v=1688555013"
+            alt="DUX Jetson fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Jetson
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1228,21 +1237,20 @@ h2 em{
 
       </article>
 
+      <!-- KARIN -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.dux.se/-/media/Images/Products/Furniture/Easy-chairs/Karin/furniture_easy-chair_karin_chrome-dakota-24_PI_1.jpg"
+            alt="DUX Karin fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Karin
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1257,7 +1265,7 @@ h2 em{
           </h4>
 
           <p>
-            Klassisk fåtölj med elegant uttryck och flera utföranden.
+            Klassisk fåtölj med elegant uttryck och kromat underrede.
           </p>
 
           <div class="product-footer">
@@ -1280,21 +1288,20 @@ h2 em{
 
       </article>
 
+      <!-- KARIN 73 -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.dux.se/-/media/Images/Products/Furniture/Easy-chairs/Karin-73/furniture_easy-chair_karin-73_chrome-dakota-24_PI_1.jpg"
+            alt="DUX Karin 73 fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Karin 73
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1320,7 +1327,7 @@ h2 em{
 
             <a
               class="product-link"
-              href="https://www.dux.se/"
+              href="https://www.dux.se/produkter/mobler/fatoljer/karin-73"
               target="_blank"
               rel="noopener">
               DUX ↗
@@ -1332,21 +1339,20 @@ h2 em{
 
       </article>
 
+      <!-- PERNILLA 69 -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.dux.se/-/media/Images/Products/Furniture/Easy-chairs/Pernilla-69/furniture_easy-chair_pernilla-69_birch-classic-soft-88_PI_1.jpg"
+            alt="DUX Pernilla 69 fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Pernilla 69
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1384,21 +1390,20 @@ h2 em{
 
       </article>
 
+      <!-- INGRID -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.dux.se/-/media/Images/Products/Furniture/Easy-chairs/Ingrid/furniture_easy-chair_ingrid_birch-classic-soft-88_PI_1.jpg"
+            alt="DUX Ingrid fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Ingrid
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1413,7 +1418,7 @@ h2 em{
           </h4>
 
           <p>
-            Fåtölj med formpressad bok och klassiskt uttryck.
+            Fåtölj i formpressad bok med fina klassiska detaljer.
           </p>
 
           <div class="product-footer">
@@ -1436,21 +1441,20 @@ h2 em{
 
       </article>
 
+      <!-- SPIDER -->
+
       <article class="product-card">
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.dux.se/-/media/Images/Products/Furniture/Easy-chairs/Spider/furniture_easy-chair_spider_PI_1.jpg"
+            alt="DUX Spider fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Spider
-            </div>
-
-          </div>
+          <span class="image-caption">
+            DUX Original
+          </span>
 
         </div>
 
@@ -1465,111 +1469,7 @@ h2 em{
           </h4>
 
           <p>
-            Avslappnad design med fokus på komfort och stöd.
-          </p>
-
-          <div class="product-footer">
-
-            <span class="price">
-              Pris på förfrågan
-            </span>
-
-            <a
-              class="product-link"
-              href="https://www.dux.se/"
-              target="_blank"
-              rel="noopener">
-              DUX ↗
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="product-card">
-
-        <div class="product-visual">
-
-          <div>
-
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Karin 73
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="product-body">
-
-          <div class="tag">
-            2-sitssoffa
-          </div>
-
-          <h4>
-            Karin 73 2-sits
-          </h4>
-
-          <p>
-            Den klassiska Karin 73-formen i tvåsitsig version.
-          </p>
-
-          <div class="product-footer">
-
-            <span class="price">
-              Pris på förfrågan
-            </span>
-
-            <a
-              class="product-link"
-              href="https://www.dux.se/"
-              target="_blank"
-              rel="noopener">
-              DUX ↗
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="product-card">
-
-        <div class="product-visual">
-
-          <div>
-
-            <div class="brand">
-              DUX Original
-            </div>
-
-            <div class="model">
-              Karin 73
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="product-body">
-
-          <div class="tag">
-            3-sitssoffa
-          </div>
-
-          <h4>
-            Karin 73 3-sits
-          </h4>
-
-          <p>
-            En större Karin 73 med samma klassiska uttryck.
+            Bekväm och stilren fåtölj med DUX spiralsystem.
           </p>
 
           <div class="product-footer">
@@ -1607,7 +1507,8 @@ h2 em{
         </h3>
 
         <p>
-          Vi hjälper dig att välja modell och utförande och återkommer med aktuell offert.
+          Vi hjälper dig att välja modell och utförande och
+          återkommer med aktuell offert.
         </p>
 
         <a class="btn" href="#kontakt">
@@ -1627,7 +1528,8 @@ h2 em{
         </h3>
 
         <p>
-          Nya originalprodukter presenteras separat från våra restaurerade och omklädda möbler.
+          Nya originalprodukter presenteras separat från våra
+          restaurerade och omklädda möbler.
         </p>
 
         <a class="textlink" href="#projekt">
@@ -1639,6 +1541,8 @@ h2 em{
     </div>
 
   </div>
+
+  <!-- LAMINO -->
 
   <div class="product-block">
 
@@ -1657,7 +1561,8 @@ h2 em{
       </div>
 
       <p>
-        Yngve Ekströms ikoniska fåtölj är en självklar del av det skandinaviska designarvet.
+        Yngve Ekströms ikoniska fåtölj är en självklar del
+        av det skandinaviska designarvet.
       </p>
 
     </div>
@@ -1668,17 +1573,14 @@ h2 em{
 
         <div class="product-visual">
 
-          <div>
+          <img
+            src="https://www.swedese.se/wp-content/uploads/2024/05/Lamino.jpg"
+            alt="Swedese Lamino fåtölj"
+            loading="lazy">
 
-            <div class="brand">
-              Swedese
-            </div>
-
-            <div class="model">
-              Lamino
-            </div>
-
-          </div>
+          <span class="image-caption">
+            Swedese
+          </span>
 
         </div>
 
@@ -1716,62 +1618,11 @@ h2 em{
 
       </article>
 
-      <article class="product-card">
-
-        <div class="product-visual">
-
-          <div>
-
-            <div class="brand">
-              Swedese
-            </div>
-
-            <div class="model">
-              Pall
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="product-body">
-
-          <div class="tag">
-            Original · tillbehör
-          </div>
-
-          <h4>
-            Lamino pall
-          </h4>
-
-          <p>
-            Matchande pall för extra komfort och ett komplett uttryck.
-          </p>
-
-          <div class="product-footer">
-
-            <span class="price">
-              Pris på förfrågan
-            </span>
-
-            <a
-              class="product-link"
-              href="https://www.swedese.se/"
-              target="_blank"
-              rel="noopener">
-              Swedese ↗
-            </a>
-
-          </div>
-
-        </div>
-
-      </article>
-
     </div>
 
     <p class="product-disclaimer">
-      Produktnamn och produktinformation presenteras som vägledning. Priser och tillgänglighet bekräftas av Skandiva vid offert.
+      Produktnamn och produktinformation presenteras som vägledning.
+      Priser och tillgänglighet bekräftas av Skandiva vid offert.
     </p>
 
   </div>
@@ -1793,7 +1644,10 @@ h2 em{
     </h2>
 
     <p>
-      På Skandiva arbetar vi med klassiska möbler som förtjänar att leva vidare. Vi restaurerar varsamt, klär om med omsorg och arbetar med material som låter möbelns form och karaktär stå i centrum.
+      På Skandiva arbetar vi med klassiska möbler som förtjänar
+      att leva vidare. Vi restaurerar varsamt, klär om med omsorg
+      och arbetar med material som låter möbelns form och karaktär
+      stå i centrum.
     </p>
 
   </div>
@@ -1819,7 +1673,8 @@ h2 em{
     </div>
 
     <p>
-      Ett urval av uttryck och material från Skandivas restaureringsarbete.
+      Ett urval av uttryck och material från Skandivas
+      restaureringsarbete.
     </p>
 
   </div>
@@ -1830,11 +1685,10 @@ h2 em{
 
       <div class="photo">
 
-        <div class="visual brown">
-
-          <div class="visual-chair"></div>
-
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1400&q=85"
+          alt="Skandinavisk fåtölj"
+          loading="lazy">
 
       </div>
 
@@ -1856,11 +1710,10 @@ h2 em{
 
       <div class="photo">
 
-        <div class="visual black">
-
-          <div class="visual-chair"></div>
-
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1200&q=85"
+          alt="Mörk skandinavisk fåtölj"
+          loading="lazy">
 
       </div>
 
@@ -1886,12 +1739,10 @@ h2 em{
 
       <div class="photo">
 
-        <div class="visual black">
-
-          <div class="visual-chair"></div>
-          <div class="visual-chair" style="transform:translateX(90px) scale(.9)"></div>
-
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1000&q=85"
+          alt="Restaurerad designmöbel"
+          loading="lazy">
 
       </div>
 
@@ -1913,11 +1764,10 @@ h2 em{
 
       <div class="photo">
 
-        <div class="visual blue">
-
-          <div class="visual-chair"></div>
-
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=85"
+          alt="Skandinavisk möbel"
+          loading="lazy">
 
       </div>
 
@@ -1939,12 +1789,10 @@ h2 em{
 
       <div class="photo">
 
-        <div class="visual brown">
-
-          <div class="visual-chair"></div>
-          <div class="visual-chair" style="transform:translateX(85px) scale(.9)"></div>
-
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1000&q=85"
+          alt="Detaljer i designmöbel"
+          loading="lazy">
 
       </div>
 
@@ -1990,7 +1838,8 @@ h2 em{
       </h3>
 
       <p>
-        Varsam restaurering av klassiska möbler med fokus på konstruktion, proportioner, material och originalkänsla.
+        Varsam restaurering av klassiska möbler med fokus på
+        konstruktion, proportioner, material och originalkänsla.
       </p>
 
     </div>
@@ -2004,7 +1853,8 @@ h2 em{
       </h3>
 
       <p>
-        Professionell omklädsel i läder och utvalda textilier, anpassad efter möbelns form och användning.
+        Professionell omklädsel i läder och utvalda textilier,
+        anpassad efter möbelns form och användning.
       </p>
 
     </div>
@@ -2018,7 +1868,8 @@ h2 em{
       </h3>
 
       <p>
-        Sömnad, knappar, stoppning och andra detaljer som gör att helheten känns genomarbetad.
+        Sömnad, knappar, stoppning och andra detaljer som gör
+        att helheten känns genomarbetad.
       </p>
 
     </div>
@@ -2032,7 +1883,8 @@ h2 em{
       </h3>
 
       <p>
-        Vård och förbättring av material och ytor för att förlänga möbelns liv och bevara dess uttryck.
+        Vård och förbättring av material och ytor för att
+        förlänga möbelns liv och bevara dess uttryck.
       </p>
 
     </div>
@@ -2047,11 +1899,10 @@ h2 em{
 
   <div class="craft-visual">
 
-    <div class="visual brown">
-
-      <div class="visual-chair"></div>
-
-    </div>
+    <img
+      src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=1400&q=85"
+      alt="Skandinavisk fåtölj"
+      loading="lazy">
 
   </div>
 
@@ -2067,7 +1918,9 @@ h2 em{
     </h2>
 
     <p>
-      En bra restaurering ska kännas lika bra som den ser ut. Vi lägger stor vikt vid sömmar, stoppning, spänst, passform och materialens naturliga uttryck.
+      En bra restaurering ska kännas lika bra som den ser ut.
+      Vi lägger stor vikt vid sömmar, stoppning, spänst, passform
+      och materialens naturliga uttryck.
     </p>
 
     <a class="textlink" href="#kontakt">
@@ -2188,7 +2041,8 @@ h2 em{
     </h2>
 
     <p>
-      Skicka bilder på din möbel så återkommer vi med en första bedömning. Verkstadsbesök sker efter överenskommelse.
+      Skicka bilder på din möbel så återkommer vi med en första
+      bedömning. Verkstadsbesök sker efter överenskommelse.
     </p>
 
   </div>
